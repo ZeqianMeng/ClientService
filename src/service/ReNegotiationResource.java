@@ -18,9 +18,9 @@ public class ReNegotiationResource extends ServerResource{
 		String returned = "";
 	    Form input = new Form(entity);
 	    //String app = input.getFirstValue("appname");
-	    //long job_id = Long.parseLong(input.getFirstValue("job_id"));
-	    //long job_id = SteerServiceServer.job_id;
 	    long job_id = Long.parseLong(input.getFirstValue("job_id"));
+	    //long job_id = SteerServiceServer.job_id;
+	   // long job_id = Long.parseLong(input.getFirstValue("job_id"));
 	    //long job_id = 4749;
 	    //long contract_id = 9591;
 	    String offers;
@@ -41,7 +41,7 @@ public class ReNegotiationResource extends ServerResource{
 		}*/
 	    
 	    
-	    System.out.println("$$$$$$$$$$ re-neg request with job id: " + job_id);
+	    //System.out.println("$$$$$$$$$$ re-neg request with job id: " + job_id);
 	    //to fetch contract_id from SteerServiceServer
 	    //long contract_id = Long.parseLong(SteerServiceServer.job_data.get(job_id).split(",")[0]);
 	    //long contract_id = SteerServiceServer.contract_id;
@@ -50,7 +50,7 @@ public class ReNegotiationResource extends ServerResource{
 	    //offers are returned offers
 	    System.out.println("$$$$$$$$$$ re-neg received quotes: " + offers);
 	    //should continue re-neg here
-	    String[] offers_array = offers.split("\\|");
+	    String[] offers_array = offers.split("\\^");
 		int lenght = offers_array.length;
 		int max = lenght - 1;
 		System.out.println("array length: " + lenght);
@@ -71,6 +71,7 @@ public class ReNegotiationResource extends ServerResource{
           //would follow the same as negotiation: broker calls SteerService's start uri
 	    if (!offer_response.isEmpty()){
 	    	returned = BrokerConnection.sendRenegAcceptAck(job_id, offer_id);
+	    	//returned = BrokerConnection.sendRenegAcceptAck(job_id, offer_id);
 	    	//returned = response.split("!")[1];
 	    	System.out.println("$$$$$$$$$$ re-neg received contents after sending AcceptAck " + response);
 	    }

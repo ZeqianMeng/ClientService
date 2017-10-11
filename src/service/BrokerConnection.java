@@ -10,8 +10,8 @@ import org.restlet.resource.ResourceException;
 
 public class BrokerConnection {
 
-	final static String uri = "http://ec2-52-214-77-123.eu-west-1.compute.amazonaws.com:8080/appinst";
-	//final static String uri = "http://localhost:8080/appinst";
+	//final static String uri = "http://ec2-34-251-126-84.eu-west-1.compute.amazonaws.com:8080/appinst";
+	final static String uri = "http://localhost:8080/appinst";
 
 	
 	//send selected offer to broker, returned would be Accept (contract contents)
@@ -90,7 +90,7 @@ public class BrokerConnection {
 	
 	public static String sendNegAcceptAck(long contract_id) throws IOException {
 
-	    System.out.println("******** inside connectAHE3 contract id received: " + contract_id);
+	    System.out.println("Client Service sends the AcceptAck for contract: " + contract_id + " to Service Broker");
 	    
 	    String response = "";
 	    ClientResource resource = new ClientResource(uri);
@@ -161,24 +161,25 @@ public class BrokerConnection {
 	    return response;
 	  }
 	
-	public static String sendNegQuoteRequest(String job, String numjobs, String nefold, String deadline) {
+	public static String sendNegQuoteRequest(String user, String group, String app, String core, String job, String numjobs, String nefold, String deadline) {
 
-	    System.out.println("******** inside connectAHE3 to start negotiation");
+	    System.out.println("Client Service sends the received QuoteRequest to Service Broker.");
 	    
 	    String response = null;
 	    ClientResource resource = new ClientResource(uri);
 
 	    Form form = new Form();
 	    if(job.equalsIgnoreCase("")){
-	        form.add("username", "Sofia");
-		    form.add("group", "ManGroup");
-		    form.add("appname","WaterSteering");
+	        form.add("username", user);
+		    form.add("group", group);
+		    form.add("appname",app);
 		    form.add("start_time","asap");
+		    form.add("core", core);
 	    }
 	    else{
-	    	form.add("username", "Sofia");
-		    form.add("group", "ManGroup");
-		    form.add("appname", "CompSteering");
+	    	form.add("username", user);
+		    form.add("group", group);
+		    form.add("appname", app);
 		    form.add("jobtype", job);
 		    form.add("numjobs", numjobs);
 		    form.add("nefold", nefold);

@@ -25,7 +25,7 @@ public class SteerServiceServer {
 		//workers.put("amazon.t2.micro", "http://ec2-52-31-37-191.eu-west-1.compute.amazonaws.com:8080/steering");
 		//workers.put("amazon.t2.small", "steerer2");
 		  SteerServiceServer rest = new SteerServiceServer();
-		  rest.createServer(8080);
+		  rest.createServer(8070);
 		  
 	    /*Component component = new Component();
 
